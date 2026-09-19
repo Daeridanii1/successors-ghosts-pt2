@@ -1,0 +1,21 @@
+ship "Ejniisde-Khora" "Ejniisde-Khora (Black Ops)"	
+    outfits
+		"Drag Cannon" 5
+		"Bimodal Coilgun Turret"
+
+		`"Nnesa" Fusion Core`
+		`OC-"Mavra" Betavoltaic Cell`
+		"Auxiliary Power Reserve" 2
+		"Primary Power Reserve"
+		`"Jaase" Shield Cortex`
+
+		"Successor Cooling" 2
+
+		`"Veusa" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+        "Harmonic Keystone"
+
+		"Outfits Expansion" 2
+
+		"Kinetic Rail Rifle" 15

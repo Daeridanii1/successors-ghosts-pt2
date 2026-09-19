@@ -1,0 +1,131 @@
+mission "Successors: Ghosts 21"
+	landing
+	name "Rendezvous with House Kaatrij"
+	description "Rendezvous with Kampa of House Kaatrij on <destination> after a meeting of the New Houses leadership."
+	source
+		attributes successor
+		not attributes uninhabited
+	destination "O-Vasa-Oa"
+	to offer
+		has "event: successors: ghosts intermission timer"
+	on offer
+		conversation
+			`Go to <destination> to meet with Kampa after a meeting of the New Houses leadership.`
+	on complete
+		conversation
+			`Kampa informs you that Houses Kaatrij and Aqrabe have signed a technological sharing treaty. You are sent to meet with Tiliia on Kasii-Cavasaa-Oa and ferry them to Raaqa-Puan-Uuoru.`
+
+
+
+mission "Successors: Ghosts 22"
+	landing
+	name "Bring Tiliia to Raaqa-Puan-Uuoru"
+	description "Bring Tiliia to <destination> as part of the new technology-sharing treaty between Houses Kaatrij and Aqrabe."
+	source "O-Vasa-Oa"
+	stopover "Kasii-Cavasaa-Oa"
+	destination "Raaqa-Puan-Uuoru"
+	to offer
+		has "Successors: Ghosts 21: done"
+	on stopover
+		conversation
+			`You meet with Tiliia, who is excited to be working with House Kaatrij once again.`
+	on complete
+		event "gilled armor done" 60
+		conversation
+			`Tiliia meets with Saajret and explains their part in the new treaty: Kaatrij and Aqrabe will be working together to devise a new type of multimodal armor designed to support Kaatrij's cloaking warships (Multimodal Armor: Gilled) by providing extra fuel and ramscoop power. Kaatrij gets the main benefit, but will be buying the production off Aqrabe. Saajret asks you to meet the back at the spaceport for an evening meal.`
+
+
+
+mission "Successors: Ghosts 23"
+	name "Rendezvous with House Kaatrij fleet"
+	description "Rendezvous with a House Kaatrij fleet on <destination> before proceeding to Shassa-Wyra-Orrou to establish direct control over the planet."
+	source "Raaqa-Puan-Uuoru"
+	destination "O-Vasa-Oa"
+	to offer
+		has "Successors: Ghosts 22: done"
+	on offer
+		conversation
+			`Your meal with Saajret and Tiliia is interrupted with a message from Kampa, who orders you to rendezvous with a House Kaatrij fleet that is first taking direct control of Shassa-Wyra-Orrou and then establishing a beachhead across the wormhole.`
+	on complete
+		conversation
+			`You meet with a captain of the Kaatrij fleet who informs you that the ships launch at dawn.`
+
+
+
+mission "Successors: Ghosts 24"
+	landing
+	name "Travel to <destination>"
+	source "O-Vasa-Oa"
+	destination "Shassa-Wyra-Orrou"
+	to offer
+		has "Successors: Ghosts 23: done"
+	on complete
+		conversation
+			`The fleet lands on <planet> and starts unloading planetary defenses, troop barracks, and other bellicose items. You are brought with the fleet's captain and herald to meet with the local landed gentry as the hero who defeated the heirloom warship. They are not pleased that their lands are being seized and their authority usurped but are ultimately loyal to their liege lords in Kaatrij and Aqrabe.`
+
+
+
+mission "Successors: Ghosts 25"
+	name "Establish a beachhead at <destination>"
+	source "Shassa-Wyra-Orrou"
+	destination "Myiara-Aret-Iir"
+	to offer
+		has "Successors: Ghosts 24: done"
+	on offer
+		conversation
+			`Your fleet has been reinforced by freighters and utility ships and is ready to travel to <planet>.`
+	on complete
+		event "myiara-aret-iir fortified" 120
+		conversation
+			`The fleet sets down around the same weather control tower where you planned your ambush of the heirloom warship. The camp it sets up is mean but effective. You are impressed by how quickly the Successors are able to construct buildings. You are instructed to meet back at the spaceport to escort the freighters home.`
+
+
+
+mission "Successors: Ghosts 26"
+	name "Escort freighters back to <destination>"
+	source "Myiara-Aret-Iir"
+	destination "Kasii-Cavasaa-Oa"
+	to offer
+		has "Successors: Ghosts 25: done"
+	on offer
+		dialog `The empty freighters gather and are ready to return to <planet>.`
+	on complete
+		conversation
+			`Safely arrived, the freighters go to be loaded with new materials and escorted to new destinations. You watch the main spaceport in the distance, busy with miltiary ships. You receive a message from Sola, the House Aqrabe scion, asking you to go to the spaceport to meet with the saints, and another from Kampa, asking you to meet at Qasa-Sija-Iri.`
+
+
+
+mission "Successors: Ghosts Three Witches"
+	invisible
+	source "Kasii-Cavasaa-Oa"
+	to offer
+		has "Successors: Ghosts 26: done"
+	on offer
+		conversation
+			`You speak with the saints.`
+		decline
+
+
+
+mission "Successors: Ghosts 27"
+	landing
+	name "Meet on <planet>"
+	source "Kasii-Cavasaa-Oa"
+	destination "Qasa-Sija-Iri"
+	to offer
+		has "Successors: Ghosts 26: done"
+	on offer
+		dialog `The empty freighters gather and are ready to return to <planet>.`
+	on complete
+		conversation
+			`Safely arrived, the freighters go to be loaded with new materials and escorted to new destinations. You watch the main spaceport in the distance, busy with miltiary ships. You receive a message from Sola, the House Aqrabe scion, asking you to go to the spaceport to meet with the saints, and another from Kampa, asking you to meet at Qasa-Sija-Iri.`
+
+
+
+mission "Successors: Ghosts 30z"
+	name "Meet with Kaatrij's contact"
+	description "Meet with House Kaatrij's contact within the Old Houses on <planet> to gather more information on House Chydiyi."
+	source "Raaqa-Puan-Uuoru"
+	destination "Staja-Kella-Oa"
+	to offer
+		has "Successors: Ghosts 30x: done"
