@@ -13,7 +13,7 @@ mission "Successors: Ghosts 21"
 			`Go to <destination> to meet with Kampa after a meeting of the New Houses leadership.`
 	on complete
 		conversation
-			`Kampa informs you that Houses Kaatrij and Aqrabe have signed a technological sharing treaty. You are sent to meet with Tiliia on Kasii-Cavasaa-Oa and ferry them to Raaqa-Puan-Uuoru.`
+			`Kampa informs you that Houses Kaatrij and Aqrabe have signed a technological sharing treaty. You are sent to meet with Tiliia on Kasii-Cavasaa-Oa and ferry them to Raaqa-Puan-Uuoru. Kampa also informs you that you may now sell Jump Drives to House Kaatrij in an effort to build up a stock for their ships.`
 
 
 
@@ -91,7 +91,7 @@ mission "Successors: Ghosts 26"
 		dialog `The empty freighters gather and are ready to return to <planet>.`
 	on complete
 		conversation
-			`Safely arrived, the freighters go to be loaded with new materials and escorted to new destinations. You watch the main spaceport in the distance, busy with miltiary ships. You receive a message from Sola, the House Aqrabe scion, asking you to go to the spaceport to meet with the saints, and another from Kampa, asking you to meet at Qasa-Sija-Iri.`
+			`Safely arrived, the freighters go to be loaded with new materials and escorted to new destinations. You watch the main spaceport in the distance, busy with military ships. You receive a message from Sola, the House Aqrabe scion, asking you to go to the spaceport to meet with the saints, and another from Kampa, asking you to meet at Qasa-Sija-Iri.`
 
 
 
@@ -114,11 +114,74 @@ mission "Successors: Ghosts 27"
 	destination "Qasa-Sija-Iri"
 	to offer
 		has "Successors: Ghosts 26: done"
-	on offer
-		dialog `The empty freighters gather and are ready to return to <planet>.`
 	on complete
+		conversation 
+			`You meet again with Kampa and Saajret in the planning room on Qasa-Sija-Iri. Joining you for the first time is a scion of House Kaatrij, who informs all assembled that information from an asset in the Old Houses in combination with analysis of the heirloom ship's wreckage has identified Kaatrij's assailant as House Sioeora. Saajret seems subtly surprised; if you push them, they tell you that such an attack doesn't make sense for Sioeora; it is by far the weakest of the Old Houses and doesn't have the industrial capacity to make good on the technology it stole, nor would the other Old Houses be motivated to defend it in a personal war of aggression against all three New Houses.`
+			`	The committee breaks and later in the day you are called to meet in private with Kampa and the scion of Kaatrij. They open up new jobs to do wargames against House Kaatrij ships. While House Kaatrij prepares for war, Kampa and the scion direct you to a new project meeting on Raaqa-Puan-Uuoru: attempting to jump the station Ijra-Ea to the Oublaa-Khora system.`
+
+
+
+mission "Successors: Ghosts 28"
+	landing
+	name "Transport equipment and crew to Ijra-Ea"
+	description `Transport <tons> of technical equipment and <passengers> engineering crew to <destination>.`
+	source "Raaqa-Puan-Uuoru"
+	destination "Ijra-Ea, Shimmering Veil"
+	cargo "Repair equipment" 240
+	passengers 10
+	to offer
+		has "Successors: Ghosts 27: done"
+	on offer
+		conversation 
+			`Kampa and Saajret meet you and discuss the steps needed to jump Ijra-Ea; it will require repairs from the damage it suffered when it was attacked and a reconfiguation of its own multimodal armor to improve structural integrity. Kaatrij asks you to deliver a large shipment of repair equipment and a team of technicians to the station. Saajret is concerned about the consequences of jumping such a large object through the damaged fabric of Predecessor space and asks if the Quarg have been consulted for assistance. Kampa acknowledges their concerns unconvicingly and instructs you to proceed for the moment.`
+	on complete
+		event "event: successors: ijra-ea occupied"
 		conversation
-			`Safely arrived, the freighters go to be loaded with new materials and escorted to new destinations. You watch the main spaceport in the distance, busy with miltiary ships. You receive a message from Sola, the House Aqrabe scion, asking you to go to the spaceport to meet with the saints, and another from Kampa, asking you to meet at Qasa-Sija-Iri.`
+			`You deliver the technicians and repair equipment; Ijra-Ea is fully decloaked, but the repair and reconfiguration process will take time to complete. You are instructed to return to Raaqa-Puan-Uuoru for new orders.`
+
+
+
+mission "Successors: Ghosts 29"
+	landing
+	name "Return to <planet>"
+	source "Ijra-Ea, Shimmering Veil"
+	destination "Raaqa-Puan-Uuoru"
+	to offer
+		has "Successors: Ghosts 28: done"
+	npc evade
+		government "People's Houses (Hostile)"
+		system Oublaa-Khora
+		personality waiting heroic unconstrained disables plunders
+		ship "Ejniisde-Khora (Black Ops)"
+		ship "Ejniisde-Khora (Black Ops)"
+	on complete
+		conversation 
+			`Kampa is relieved that you escaped without injury. They tell you that the People's Houses stations still belong to House Myurej and that the New Houses cannot legally operate there. The Houses are willing to tolerate (read, encourage) low-level piracy in order to justify maintaining their standing fleets, but it is now clear that House Sioeora and possibly its allies are using the People's Houses as proxies to further their own aims. Kampa asks you to meet them at the spaceport so that they can consider their next move.`
+
+
+
+mission "Successors: Ghosts 30"
+	name "Escort diplomatic mission to <stopover planets>"
+	source "Raaqa-Puan-Uuoru"
+	stopover "Aava-Aasa-Khora"
+	destination "Raaqa-Puan-Uuoru"
+	to offer
+		has "Successors: Ghosts 28: done"
+	npc save
+		government "House Kaatrij"
+		personality lauching escort
+		ship "Kaskhorade"
+		ship "Vujlet-Usaqri"
+		ship "Vujlet-Usaqri"
+		ship "Vujlet-Usaqri"
+		ship "Vujlet-Usaqri"
+	on offer
+		conversation 
+			`Kampa asks you to escort a diplomatic convoy to <stopover planets> in order to ask House Myurej to permit the New Houses to perform a police action against the People's Houses. Kampa is skeptical about their success, but considers it a valuable opportunity nonetheless to observe the Old Houses' current activities.`
+	on stopover
+		conversation
+			`You and Kampa meet with the scion of Myurej, who affects offense at not being dealt with by one of equal status in Kaatrij and asserts that Kaatrij's response, if they permit it, is sure to inflict an unacceptable number of civilian casualties upon an already-downtrodden group.`
+	on complete
 
 
 
@@ -129,3 +192,34 @@ mission "Successors: Ghosts 30z"
 	destination "Staja-Kella-Oa"
 	to offer
 		has "Successors: Ghosts 30x: done"
+
+
+
+### PURSUIT ENDING
+# Rewards:
+#	* Kijran-Khora can be bought from House Kaatrij
+# 	* New Houses swizzle (swizzle 3, light green)
+#		* Mission to switch between available swizzles if Free Worlds Campaign completed
+# 	* Large cash payment (~100M), moderate new salary
+
+# Leads to:
+# 	High Openness: Martyr
+# 	Low Openness: Prisoner
+
+
+
+### TREASON ENDING
+# Rewards:
+#	* One Kijra-Khora
+#	* (After a delay) Access to additional systems lost in Predecessor space, which may contain:
+#		* Stellar metal fragment asteroids around some blue stars
+#		* Additional navigation opportunities
+
+# Leads to:
+# 	High Openness: Explorer
+# 	Low Openness: Exile
+
+
+
+### TREASON ENDING (UNCOMPROMISING)
+# Additional rewards: Some sort of medal / trinket to commemorate the player's uncompromising spirit.
