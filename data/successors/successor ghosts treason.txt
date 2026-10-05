@@ -1,0 +1,90 @@
+### TREASON ENDING
+# Rewards:
+#	* One Kijra-Khora
+#	* (After a delay) Access to additional systems lost in Predecessor space, which may contain:
+#		* Stellar metal fragment asteroids around some blue stars
+#		* Additional navigation opportunities
+
+# Leads to:
+# 	High Openness: Explorer
+# 	Low Openness: Exile
+
+mission "Successors: Ghosts Treason 1"
+	name "Reoutfit the <ship> with heavy weapons"
+	description "Rendezvous with Tiliia at <destination> to stock up on weapons."
+	source "Kasi-Osolaa-Sossa"
+	destination "Kasii-Cavasaa-Oa"
+	to offer
+		has "successors: ghosts chose treason"
+	on complete
+		take outfit `"Ojet" Bimodal Coilgun` 6
+		outfit `"Hasur" Photoballista` 2
+		outfit "Stellar Metal Fragments" 136
+
+
+
+mission "Successors: Ghosts Treason 2"
+	landing
+	name "Steal a point drive"
+	description "Go to the <system>, disable the heirloom warship stationed there, and steal its point drive."
+	source "Kasii-Cavasaa-Oa"
+	destination "Ijra-Ea, Shimmering Veil"
+	to offer
+		has "Successors: Ghosts Treason 1: done"
+	npc board
+		government "House Kaatrij"
+		personality waiting heroic target unconstrained
+		ship "Vujlet (Heirloom)"
+		on board
+			outfit "Stellar Metal Fragments" 66
+			set "successors: ghosts stole point drive"
+			conversation
+				`You cut the heirloom ship's point drive from its still-beating heart as it self-destructs in a too-slow attempt to stop you.`
+				launch
+			fail
+
+
+
+mission "Successors: Ghosts Treason 3"
+	transition
+	name "Escape Successor space"
+	description "Survive the incoming onslaught as Saajret installs the point drive. You must remain uncloaked."
+	source "Myruet-Kvelq"
+	destination "Earth"
+	to offer
+		has "successors: ghosts stole point drive"
+	to complete
+		never
+	# multiple hostile NPCs
+	timer 7200
+		"activation requirements"
+			uncloaked
+		on deactivation
+			dialog "Saajret reminds you that the ship must remain uncloaked to install the point drive."
+		on timeup
+			outfit "Point Drive"
+			conversation 
+				`Saajret finishes installing the point drive. Despite the heat of the battle, its countless sensors and complex internal workings are able to pry open the remnant of the wormhole just enough to allow the <ship> to escape through it into the unknown territory beyond.`
+			fail
+
+
+
+mission "Successors: Ghosts Treason 4"
+	transition
+	name "Navigate the Shroud"
+	description "Find the Quarg or die trying."
+	source "Oublaa-Khora"
+	destination "Kjiaarv Ai-Stiidej" # Original Quarg ringworld for the Myiara
+	to offer
+		has "outfit: Point Drive"
+	on offer
+		outfit "Damaged Cloak" # Disable cloaking
+		outfit "Ruptured Fuel Lines" # Reduce fuel capacity to 200, reduce ramscoop
+		outfit "Infrastructural Damage" # Adds a small amount of "thrusting corrosion" for cosmetic effects (armor sloughing off)
+		conversation
+			`The <ship> arrives on the other side of the spatial rift in one piece, but the stress of using the point drive in such a fashion has badly damaged its fuel lines and has overloaded its cloaking systems, neither of which can be repaired outside of a port. Although there is not much of a guide in this new and twisted expanse, the original plan must be carried out: find some way to escape the Shroud and contact the Quarg before House Kaatrij manages to find and neutralize both you and Saajret.`
+
+
+
+### TREASON ENDING (UNCOMPROMISING)
+# Additional rewards: Kijra-Riita unique transport

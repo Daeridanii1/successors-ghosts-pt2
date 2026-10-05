@@ -145,7 +145,7 @@ mission "Successors: Ghosts 29"
 	landing
 	name "Return to <planet>"
 	source "Ijra-Ea, Shimmering Veil"
-	destination "Raaqa-Puan-Uuoru"
+	destination "Qasa-Sija-Iri"
 	to offer
 		has "Successors: Ghosts 28: done"
 	npc evade
@@ -162,11 +162,11 @@ mission "Successors: Ghosts 29"
 
 mission "Successors: Ghosts 30"
 	name "Escort diplomatic mission to <stopover planets>"
-	source "Raaqa-Puan-Uuoru"
+	source "Qasa-Sija-Iri"
 	stopover "Aava-Aasa-Khora"
-	destination "Raaqa-Puan-Uuoru"
+	destination "Qasa-Sija-Iri"
 	to offer
-		has "Successors: Ghosts 28: done"
+		has "Successors: Ghosts 29: done"
 	npc save
 		government "House Kaatrij"
 		personality lauching escort
@@ -182,6 +182,66 @@ mission "Successors: Ghosts 30"
 		conversation
 			`You and Kampa meet with the scion of Myurej, who affects offense at not being dealt with by one of equal status in Kaatrij and asserts that Kaatrij's response, if they permit it, is sure to inflict an unacceptable number of civilian casualties upon an already-downtrodden group.`
 	on complete
+		conversation
+			`With your diplomatic mission unsuccessful, Kampa recommends you check on Saajret and Tiliia on Raaqa-Puan-Uuoru.`
+
+
+
+mission "Successors: Ghosts 31"
+	landing
+	name "Check on Saajret and Tiliia"
+	source "Qasa-Sija-Iri"
+	destination "Raaqa-Puan-Uuoru"
+	to offer
+		has "Successors: Ghosts 30: done"
+	on complete
+		give ship "Vujrtaan (Testbed)"
+		# Branch convo if gilled armor is done: inform player of the armor's deployment if yes, note that it is a prototype if no.
+		conversation
+			`Saajret and Tiliia are happy to present a prototype of the Vujrtaan, a new stealth ship for House Kaatrij that will also be provided in limited numbers to Aqrabe under a personnel-sharing scheme. In order to put the new ship through its paces, you are to take one for a test flight into Predecessor space where Saajret and Tiliia will take notes on its performance.`
+
+
+
+mission "Successors: Ghosts 32"
+	name "Test the Vujrtaan (1st leg)"
+	source "Raaqa-Puan-Uuoru"
+	waypoint "Eta Carinae"
+	destination "Kaeyin"
+	passengers 2
+	to offer
+		has "Successors: Ghosts 31: done"
+	on offer
+		`Saajret and Tiliia ensure that you are ready to go, and the Vujrtaan is properly equipped for the voyage to come.`
+	#on enter "Kasii-Sola"
+	#on enter "Eta Carinae"
+	on complete
+		event "successors: ghosts uuoru-sossa disappears"
+		conversation
+			`You meet Saajret and Tiliia by moonlight on this distant world and speak with them each individually.`
+			`	Tiliia is thrilled to have explored so far from their home. They talk about how Houses Aqrabe and Kaatrij have been growing closer of late, and relate it suggestively to how much they've enjoyed working with Saajret on the new multimodal armor project. They ask for advice on how to handle Saajret.`
+			`	Saajret reveals the item they retrieved from Kasii-Sola: the plans for a heretofore-unproduced ship designed by their ancestor Resja. They express their excitement at the prospect of bringing their ancestor's imagining to life, but their expressions belie a great sadness as well. Pushing them on it in the right way causes them to reveal that they fear their time is running out, that they worry bringing this new ship into being will be their last act before their own foolishness catches up with them.`
+
+
+
+mission "Successors: Ghosts 33"
+	landing
+	name "Test the Vujrtaan (2nd leg)"
+	source "Kaeyin"
+	waypoint "Avasaa-Novaa"
+	destination "Raaqa-Puan-Uuoru"
+	passengers 2
+	to offer
+		has "Successors: Ghosts 32: done"
+	on enter 
+		or
+			"Mavra-Ijsola"
+			"Kasii-Cavaasa"
+			"Kiiraj-Luue"
+			"Kasi-Vasa-Novaa"
+		dialog "Oh no system gone."
+	on complete
+		conversation
+			`Saajret and Tiliia depart to work on their next project.`
 
 
 
@@ -205,21 +265,3 @@ mission "Successors: Ghosts 30z"
 # Leads to:
 # 	High Openness: Martyr
 # 	Low Openness: Prisoner
-
-
-
-### TREASON ENDING
-# Rewards:
-#	* One Kijra-Khora
-#	* (After a delay) Access to additional systems lost in Predecessor space, which may contain:
-#		* Stellar metal fragment asteroids around some blue stars
-#		* Additional navigation opportunities
-
-# Leads to:
-# 	High Openness: Explorer
-# 	Low Openness: Exile
-
-
-
-### TREASON ENDING (UNCOMPROMISING)
-# Additional rewards: Some sort of medal / trinket to commemorate the player's uncompromising spirit.
