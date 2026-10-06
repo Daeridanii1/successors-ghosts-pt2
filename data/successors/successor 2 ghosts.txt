@@ -215,7 +215,6 @@ mission "Successors: Ghosts 32"
 	#on enter "Kasii-Sola"
 	#on enter "Eta Carinae"
 	on complete
-		event "successors: ghosts uuoru-sossa disappears"
 		conversation
 			`You meet Saajret and Tiliia by moonlight on this distant world and speak with them each individually.`
 			`	Tiliia is thrilled to have explored so far from their home. They talk about how Houses Aqrabe and Kaatrij have been growing closer of late, and relate it suggestively to how much they've enjoyed working with Saajret on the new multimodal armor project. They ask for advice on how to handle Saajret.`
@@ -232,16 +231,89 @@ mission "Successors: Ghosts 33"
 	passengers 2
 	to offer
 		has "Successors: Ghosts 32: done"
-	on enter 
-		or
-			"Mavra-Ijsola"
-			"Kasii-Cavaasa"
-			"Kiiraj-Luue"
-			"Kasi-Vasa-Novaa"
-		dialog "Oh no system gone."
+	to fail
+		has "Successors: Ghosts 34: offered"
+	on enter "Uuoru-Sossa"
+		fail
+
+
+
+mission "Successors: Ghosts 34"
+	entering
+	name "Make an emergency landing on <planet>"
+	description "Make an emergency landing on <planet> to repair the Vujrtaan after a disastrous jump to the Uuoru-Sossa system."
+	source "Uuoru-Sossa"
+	destination "Kella-Uuoru-Sossa"
+	to offer
+		has "Successors: Ghosts 33: offered"
+	on offer
+		conversation
+			`Something terribly wrong happens as you finish your jump into the <system> system; the ship shudders as if struck by a gigantic hand and seemingly every alarm on board rings in unison. You are forced to make an emergency landing on <planet> in an effort to repair your vessel.`
 	on complete
 		conversation
-			`Saajret and Tiliia depart to work on their next project.`
+			`The automated repair systems of the <ship> manage to clear up most of the damage by evening, but Tiliia remarks that it easily could have been much worse. Saajret remarks that the phenomenon is similar to records from the Predecessors' collapse of ships being torn out of hyperlanes, but the fact that is has happened to a jump drive-equipped ship suggests that the dissolution of space in the Shroud has worsened, likely from the new use of point drives in the preceding months. You must hurry back to the High Houses to inform them.`
+
+
+
+mission "Successors: Ghosts 35"
+	landing
+	name "Return to <planet>"
+	source "Kella-Uuoru-Sossa"
+	destination "Raaqa-Puan-Uuoru"
+	passengers 2
+	to offer
+		has "Successors: Ghosts 34: done"
+	on complete
+		take ship "Vujrtaan (Testbed)"
+		conversation
+			`You are met by Kampa, who receives your quickly-related information. They dispatch envoys to the other New Houses to inform them of the situation, and ask you to meet them at the spaceport later.`
+
+
+
+mission "Successors: Ghosts 36"
+	name "Escort jump drive ship to Ijra-Ea"
+	source "Raaqa-Puan-Uuoru"
+	destination "Ijra-Ea, Shimmering Veil"
+	#npc save escort
+	to offer
+		has "Successors: Ghosts 35: done"
+	on offer
+		conversation
+			`Kampa and the Scion meet you again with a Kaskhorade carrying a jump drive for Ijra-Ea, the ancient citadel that Kaatrij wants to jump out of the Shroud. They tell you that there is no time to lose, but if you have any plans outside of Successor space, this may be the last chance you get to attend to them.`
+	on complete
+		conversation
+			`The engineers on board Ijra-Ea report their concern that jumping the station may worsen the situation in the Shroud, and that moreover they are not certain they will have the days required post-jump to maneuver the station through the wormhole. The scion considers their options and tell the engineers to jump the station into the mouth of the wormhole directly, cutting down on the time required to transit it at great risk to the station. You and the Kaskhorade will retreat to Uuoru-Veldt-Stir to await the jump.`
+
+
+
+mission "Successors: Ghosts 37"
+	landing
+	name "Retreat to <planet> to observe"
+	source "Ijra-Ea, Shimmering Veil"
+	destination "Uuoru-Veldt-Stir"
+	#npc save escort
+	to offer
+		has "Successors: Ghosts 36: done"
+	on complete
+		event "successors: ghosts wormhole collapse"
+		conversation
+			`Some hours after you land, the sky is rent with a tremendous red flash.`
+
+
+
+mission "Successors: Ghosts 38"
+	entering
+	name "Check on the situation"
+	stopover "Ijra-Ea, Shimmering Veil"
+	destination "Uuoru-Veldt-Stir"
+	#npc save escort
+	to offer
+		has "Successors: Ghosts 37: done"
+	on offer
+		dialog "Ijra-Ea managed to make the jump but the wormhole itself is nowhere to be seen. You are directed to land on it to learn more."
+	on complete
+		conversation
+			`The Successors are cut off.`
 
 
 
